@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jacksonville Run Club</title>
+<link rel="icon" type="image/jpeg" href="jrc_logo.JPEG">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -141,6 +142,26 @@
     display:flex; align-items:center; gap:10px; margin-bottom:18px;
   }
   .hero-eyebrow::before{ content:""; width:26px; height:2px; background:var(--orange); display:block; }
+  .next-run{
+    font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:0.82rem;
+    color:#fff; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25);
+    display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:20px;
+    margin-bottom:22px;
+  }
+  .next-run::before{ content:"●"; color:var(--orange); font-size:0.6rem; }
+
+  /* ---- Leaderboard ---- */
+  .leaderboard{ display:flex; flex-direction:column; gap:2px; }
+  .leader-row{
+    display:grid; grid-template-columns:44px 1fr auto; align-items:center; gap:16px;
+    background:var(--panel); border:1px solid var(--line); padding:14px 20px; margin-bottom:6px; border-radius:4px;
+  }
+  .leader-rank{
+    font-family:'Anton',sans-serif; font-size:1.4rem; color:var(--pine); text-align:center;
+  }
+  .leader-row:nth-child(1) .leader-rank{ color:var(--orange); }
+  .leader-name{ font-weight:600; }
+  .leader-miles{ font-family:'IBM Plex Mono',monospace; color:var(--pine-2); font-size:0.95rem; }
   .hero h1{
     font-size:clamp(2.6rem, 7vw, 5.2rem); color:#fff; max-width:820px;
   }
@@ -223,6 +244,12 @@
     font-family:'Oswald',sans-serif; font-size:0.68rem; font-weight:700;
     text-transform:uppercase; letter-spacing:0.05em; color:var(--orange-dark);
   }
+  .tier-badge{
+    display:inline-block; font-family:'Oswald',sans-serif; font-size:0.68rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.05em; padding:3px 10px; border-radius:20px;
+  }
+  .tier-badge.elite{ background:var(--paper-2); color:var(--pine); border:1px solid var(--pine); }
+  .tier-badge.elite-plus{ background:var(--ink); color:var(--gold); border:1px solid var(--gold); }
 
   /* ---- People cards (captains / board / founders) ---- */
   .people-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:22px; }
@@ -336,7 +363,7 @@
 <body>
 
 <div class="ticker" id="ticker">
-  SATURDAY RUN MOVES TO FRIENDSHIP FOUNTAIN THIS WEEK &nbsp;<span>&rarr; RSVP NOW</span>
+  <span id="ticker-text">SATURDAY RUN MOVES TO FRIENDSHIP FOUNTAIN THIS WEEK</span> &nbsp;<span>&rarr; RSVP NOW</span>
   <button onclick="document.getElementById('ticker').style.display='none'" aria-label="Dismiss">&times;</button>
 </div>
 
@@ -361,6 +388,7 @@
 <nav class="subnav" id="subnav">
   <div class="wrap">
     <a href="#roster" class="sub-link active">Roster</a>
+    <a href="#leaderboard" class="sub-link">Leaderboard</a>
     <a href="#captains" class="sub-link">Run Captains</a>
     <a href="#board" class="sub-link">Board</a>
     <a href="#founders" class="sub-link">Founders</a>
@@ -372,6 +400,7 @@
 <header class="hero" id="top">
   <div class="hero-inner">
     <div class="hero-eyebrow">Jacksonville, FL &middot; Since 2024</div>
+    <div class="next-run" id="next-run">Loading next run&hellip;</div>
     <h1>Run Together. <em>Rise Together.</em></h1>
     <p class="lede">A free, all-paces run club meeting twice a week at Friendship Fountain. No membership fees, no minimum pace — just a route, a group, and community after.</p>
     <div class="hero-actions">
@@ -379,9 +408,9 @@
       <a class="btn-ghost" href="#roster">View Roster &rarr;</a>
     </div>
     <div class="stat-strip">
-      <div><div class="stat-num mono">184</div><div class="stat-label">Active Members</div></div>
+      <div><div class="stat-num mono" id="stat-members">184</div><div class="stat-label">Active Members</div></div>
       <div><div class="stat-num mono">2x</div><div class="stat-label">Weekly Runs</div></div>
-      <div><div class="stat-num mono">6</div><div class="stat-label">Pace Groups</div></div>
+      <div><div class="stat-num mono" id="stat-pacegroups">6</div><div class="stat-label">Pace Groups</div></div>
       <div><div class="stat-num mono">2024</div><div class="stat-label">Founded</div></div>
     </div>
   </div>
@@ -405,11 +434,25 @@
     <div class="table-scroll">
     <table class="roster-table">
       <thead>
-        <tr><th>Runner</th><th>Bib</th><th>Pace Group</th><th>Weekly Mi</th><th>Joined</th><th>Role</th></tr>
+        <tr><th>Runner</th><th>Bib</th><th>Pace Group</th><th>Weekly Mi</th><th>Joined</th><th>Role</th><th>Tier</th></tr>
       </thead>
       <tbody id="roster-body"></tbody>
     </table>
     </div>
+  </div>
+</section>
+
+<!-- LEADERBOARD -->
+<section class="block" id="leaderboard">
+  <div class="wrap">
+    <div class="block-head">
+      <div>
+        <div class="eyebrow">Top Milers</div>
+        <h2>Leaderboard</h2>
+        <p class="block-sub" style="margin-top:8px;">Highest weekly mileage across the club right now.</p>
+      </div>
+    </div>
+    <div class="leaderboard" id="leaderboard-list"></div>
   </div>
 </section>
 
@@ -468,38 +511,12 @@
       <button class="active">Weekly Runs</button>
       <button>Races &amp; Events</button>
     </div>
-    <div class="sched-list">
-      <div class="sched-row">
-        <div class="sched-day">TUE<small>6:00 PM</small></div>
-        <div><div class="sched-name">Tuesday Evening Run — Friendship Fountain</div><div class="sched-meta">All paces welcome &middot; meet at Friendship Fountain, Downtown Jax</div></div>
-        <div class="sched-dist">3–6 mi</div>
-        <button class="rsvp-btn">RSVP</button>
-      </div>
-      <div class="sched-row">
-        <div class="sched-day">SAT<small>7:00 AM</small></div>
-        <div><div class="sched-name">Saturday Morning Run — Friendship Fountain</div><div class="sched-meta">Beginner friendly &middot; meet at Friendship Fountain, Downtown Jax</div></div>
-        <div class="sched-dist">4–10 mi</div>
-        <button class="rsvp-btn">RSVP</button>
-      </div>
-    </div>
+    <div class="sched-list" id="weekly-runs-list"></div>
 
     <div class="block-head" style="margin-top:44px;">
       <div><div class="eyebrow">Upcoming</div><h2 style="font-size:1.6rem;">Races &amp; Group Events</h2></div>
     </div>
-    <div class="sched-list">
-      <div class="sched-row">
-        <div class="sched-day mono">08<small>AUG</small></div>
-        <div><div class="sched-name">Summer Speed Series — Week 1</div><div class="sched-meta">Club-hosted 5K time trial &middot; Riverfront Track</div></div>
-        <div class="sched-dist">5K</div>
-        <button class="rsvp-btn secondary">Details</button>
-      </div>
-      <div class="sched-row">
-        <div class="sched-day mono">21<small>SEP</small></div>
-        <div><div class="sched-name">Foothill Half Marathon — Club Meetup</div><div class="sched-meta">Group registration + shakeout run the day before</div></div>
-        <div class="sched-dist">13.1 mi</div>
-        <button class="rsvp-btn secondary">Details</button>
-      </div>
-    </div>
+    <div class="sched-list" id="events-list"></div>
   </div>
 </section>
 
@@ -545,9 +562,9 @@
       </div>
       <div class="foot-col">
         <h4>Connect</h4>
-        <a href="#">Instagram</a>
-        <a href="#">Strava Club</a>
-        <a href="#">Email Us</a>
+        <a href="https://www.instagram.com/jacksonvillerunclub/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.strava.com/clubs/jacksonvillerunclub" target="_blank" rel="noopener">Strava Club</a>
+        <a href="mailto:runclubjacksonville@gmail.com">Email Us</a>
       </div>
     </div>
   </div>
@@ -559,6 +576,56 @@
   document.querySelector('.burger').addEventListener('click', () => {
     document.querySelector('.main-links').classList.toggle('open');
   });
+
+  const dayNameToIndex = { "Sunday":0, "Monday":1, "Tuesday":2, "Wednesday":3, "Thursday":4, "Friday":5, "Saturday":6 };
+  const dayAbbr = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
+  const monthAbbr = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+
+  function formatTime12h(time24){
+    const [h, m] = time24.split(':').map(Number);
+    const period = h >= 12 ? 'PM' : 'AM';
+    const h12 = h % 12 === 0 ? 12 : h % 12;
+    return `${h12}:${String(m).padStart(2,'0')} ${period}`;
+  }
+
+  // ---- Next run countdown (reads from data.weeklyRuns) ----
+  function getNextRun(weeklyRuns){
+    const now = new Date();
+    let next = null;
+    for (let i = 0; i < 14; i++){
+      const d = new Date(now);
+      d.setDate(now.getDate() + i);
+      d.setHours(0,0,0,0);
+      weeklyRuns.forEach(run => {
+        const dayIndex = dayNameToIndex[run.day];
+        if (d.getDay() === dayIndex){
+          const [h, m] = run.time.split(':').map(Number);
+          const candidate = new Date(d);
+          candidate.setHours(h, m, 0, 0);
+          if (candidate > now && (!next || candidate < next.time)){
+            next = { time: candidate, label: run.name.split(' — ')[0] };
+          }
+        }
+      });
+    }
+    return next;
+  }
+
+  function updateCountdown(weeklyRuns){
+    const el = document.getElementById('next-run');
+    if (!el) return;
+    const next = getNextRun(weeklyRuns);
+    if (!next) { el.textContent = "Check the schedule for upcoming runs"; return; }
+    const diff = next.time - new Date();
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
+    let parts = [];
+    if (days > 0) parts.push(days + "d");
+    parts.push(hours + "h");
+    parts.push(minutes + "m");
+    el.textContent = next.label + " in " + parts.join(" ");
+  }
 
   // ---- Load roster/captains/board/founders/partners from data/content.json ----
   const founderPhotoStyles = [
@@ -582,7 +649,33 @@
             <td class="mono">${p.weeklyMiles}</td>
             <td class="mono">${p.joined}</td>
             <td>${p.role ? `<span class="cap-badge">${p.role}</span>` : '—'}</td>
+            <td>${p.tier === 'Elite+' ? '<span class="tier-badge elite-plus">Elite+</span>' : p.tier === 'Elite' ? '<span class="tier-badge elite">Elite</span>' : '—'}</td>
           </tr>`).join('');
+      }
+
+      // Dynamic stats: active member count + pace group count
+      if (data.roster) {
+        const statMembers = document.getElementById('stat-members');
+        if (statMembers) statMembers.textContent = data.roster.length;
+        const statPaceGroups = document.getElementById('stat-pacegroups');
+        if (statPaceGroups) {
+          const uniqueGroups = new Set(data.roster.map(p => p.paceGroup));
+          statPaceGroups.textContent = uniqueGroups.size;
+        }
+      }
+
+      // Leaderboard: top 5 by weekly miles
+      const leaderboardList = document.getElementById('leaderboard-list');
+      if (leaderboardList && data.roster) {
+        const ranked = [...data.roster]
+          .sort((a, b) => (parseFloat(b.weeklyMiles) || 0) - (parseFloat(a.weeklyMiles) || 0))
+          .slice(0, 5);
+        leaderboardList.innerHTML = ranked.map((p, i) => `
+          <div class="leader-row">
+            <div class="leader-rank">${i + 1}</div>
+            <div class="leader-name">${p.name}</div>
+            <div class="leader-miles">${p.weeklyMiles} mi/wk</div>
+          </div>`).join('');
       }
 
       // Captains
@@ -631,12 +724,50 @@
             <div><div class="partner-tier">${p.tier}</div><h3>${p.name}</h3><p>${p.blurb}</p></div>
           </div>`).join('');
       }
+      // Ticker text
+      const tickerText = document.getElementById('ticker-text');
+      if (tickerText && data.ticker) {
+        tickerText.textContent = data.ticker.toUpperCase();
+      }
+
+      // Weekly recurring runs
+      const weeklyRunsList = document.getElementById('weekly-runs-list');
+      if (weeklyRunsList && data.weeklyRuns) {
+        weeklyRunsList.innerHTML = data.weeklyRuns.map(run => `
+          <div class="sched-row">
+            <div class="sched-day">${dayAbbr[dayNameToIndex[run.day]]}<small>${formatTime12h(run.time)}</small></div>
+            <div><div class="sched-name">${run.name}</div><div class="sched-meta">${run.meta}</div></div>
+            <div class="sched-dist">${run.distance}</div>
+            <button class="rsvp-btn">RSVP</button>
+          </div>`).join('');
+      }
+
+      // Races & events
+      const eventsList = document.getElementById('events-list');
+      if (eventsList && data.events) {
+        eventsList.innerHTML = data.events.map(ev => {
+          const d = new Date(ev.date + 'T00:00:00');
+          return `
+          <div class="sched-row">
+            <div class="sched-day mono">${String(d.getDate()).padStart(2,'0')}<small>${monthAbbr[d.getMonth()]}</small></div>
+            <div><div class="sched-name">${ev.name}</div><div class="sched-meta">${ev.meta}</div></div>
+            <div class="sched-dist">${ev.distance}</div>
+            <button class="rsvp-btn secondary">Details</button>
+          </div>`;
+        }).join('');
+      }
+
+      // Next-run countdown, driven by the same weeklyRuns data
+      if (data.weeklyRuns) {
+        updateCountdown(data.weeklyRuns);
+        setInterval(() => updateCountdown(data.weeklyRuns), 60000);
+      }
     })
     .catch(err => console.error('Could not load content.json', err));
 
   // scroll-spy for subnav
   const links = document.querySelectorAll('.sub-link');
-  const sections = ['roster','captains','board','founders','schedule','partners'].map(id=>document.getElementById(id));
+  const sections = ['roster','leaderboard','captains','board','founders','schedule','partners'].map(id=>document.getElementById(id));
   window.addEventListener('scroll', ()=>{
     let current = sections[0].id;
     sections.forEach(sec=>{
