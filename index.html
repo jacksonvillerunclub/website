@@ -203,7 +203,8 @@
   }
   .roster-toggle button.active{ background:var(--ink); color:#fff; }
 
-  .roster-table{ width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); }
+  .table-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .roster-table{ width:100%; min-width:640px; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); }
   .roster-table thead th{
     text-align:left; font-family:'Oswald',sans-serif; font-size:0.72rem;
     text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-soft);
@@ -325,6 +326,11 @@
     .sched-dist{ grid-column:2/3; text-align:left; }
     .rsvp-btn{ grid-column:2/3; justify-self:start; }
   }
+  .main-links.open{
+    display:flex; flex-direction:column; position:absolute;
+    top:64px; left:0; right:0; background:var(--ink);
+    padding:20px 24px; gap:16px; z-index:60;
+  }
 </style>
 </head>
 <body>
@@ -395,12 +401,14 @@
       </div>
     </div>
 
+    <div class="table-scroll">
     <table class="roster-table">
       <thead>
         <tr><th>Runner</th><th>Bib</th><th>Pace Group</th><th>Weekly Mi</th><th>Joined</th><th>Role</th></tr>
       </thead>
       <tbody id="roster-body"></tbody>
     </table>
+    </div>
   </div>
 </section>
 
@@ -546,6 +554,11 @@
 </footer>
 
 <script>
+  // mobile menu toggle
+  document.querySelector('.burger').addEventListener('click', () => {
+    document.querySelector('.main-links').classList.toggle('open');
+  });
+
   // ---- Load roster/captains/board/founders/partners from data/content.json ----
   const founderPhotoStyles = [
     '',
@@ -559,7 +572,7 @@
     .then(data => {
       // Roster table
       const rosterBody = document.getElementById('roster-body');
-      if (rosterBody) {
+      if (rosterBody && data.roster) {
         rosterBody.innerHTML = data.roster.map(p => `
           <tr>
             <td class="roster-name">${p.name}</td>
@@ -573,7 +586,7 @@
 
       // Captains
       const captainsGrid = document.getElementById('captains-grid');
-      if (captainsGrid) {
+      if (captainsGrid && data.captains) {
         captainsGrid.innerHTML = data.captains.map(c => `
           <div class="people-card">
             <div class="people-photo"><span class="initials">${c.initials}</span><span class="bib">${c.bib}</span></div>
@@ -583,7 +596,7 @@
 
       // Board
       const boardGrid = document.getElementById('board-grid');
-      if (boardGrid) {
+      if (boardGrid && data.board) {
         boardGrid.innerHTML = data.board.map(b => `
           <div class="people-card">
             <div class="people-photo" style="background:linear-gradient(135deg,var(--slate),#2C363D);"><span class="initials">${b.initials}</span></div>
@@ -593,7 +606,7 @@
 
       // Founders
       const foundersList = document.getElementById('founders-list');
-      if (foundersList) {
+      if (foundersList && data.founders) {
         foundersList.innerHTML = data.founders.map((f, i) => `
           <div class="founder-card">
             <div class="founder-photo" style="${founderPhotoStyles[i % founderPhotoStyles.length]}"><span class="initials" style="${founderInitialsStyles[i % founderInitialsStyles.length]}">${f.initials}</span></div>
@@ -606,11 +619,11 @@
 
       // Partners
       const partnerStrip = document.getElementById('partner-strip');
-      if (partnerStrip) {
+      if (partnerStrip && data.partners) {
         partnerStrip.innerHTML = data.partners.map(p => `<span class="plogo">${p.name}</span>`).join('');
       }
       const partnerGrid = document.getElementById('partner-grid');
-      if (partnerGrid) {
+      if (partnerGrid && data.partners) {
         partnerGrid.innerHTML = data.partners.map(p => `
           <div class="partner-card">
             <div class="partner-mark">${p.mark}</div>
@@ -649,8 +662,7 @@
   });
 </script>
 
-</body>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script>
   if (window.netlifyIdentity) {
     window.netlifyIdentity.on("init", user => {
@@ -662,4 +674,6 @@
     });
   }
 </script>
+
+</body>
 </html>
