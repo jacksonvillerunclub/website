@@ -1,1 +1,65 @@
-
+{
+  "founders": [
+    {
+      "name": "Jaylen Fowler ",
+      "initials": "JF",
+      "blurb": "N/A"
+    },
+    {
+      "name": "Jerome Jordan III",
+      "initials": "JJ",
+      "blurb": "N/A"
+    },
+    {
+      "name": "Rique Bentley",
+      "initials": "RB",
+      "blurb": "N/A"
+    }
+  ],
+  "board": [
+    {
+      "name": "Amy Merrills",
+      "initials": "AM",
+      "role": "N/A",
+      "blurb": "N/A"
+    },
+    {
+      "name": "Emily Perry",
+      "initials": "EP",
+      "role": "N/A",
+      "blurb": "N/A"
+    },
+    {
+      "name": "Chrislande Baptiste",
+      "initials": "CB",
+      "role": "N/A",
+      "blurb": "N/A"
+    },
+    {
+      "name": "Christin Johnson",
+      "initials": "CJ",
+      "role": "N/A",
+      "blurb": "N/A"
+    }
+  ],
+  "partners": [
+    {
+      "name": "Ankh Fitness",
+      "tier": "Fitness Partner",
+      "mark": "AF",
+      "blurb": "N/A"
+    },
+    {
+      "name": "All 1 Media",
+      "tier": "Media Marketing",
+      "mark": "A1",
+      "blurb": "N/A"
+    },
+    {
+      "name": "Jordan The Realtor ",
+      "tier": "Real Estate",
+      "mark": "JTR",
+      "blurb": "N/A"
+    }
+  ]
+}
