@@ -13,6 +13,32 @@ collections:
         label: "Roster, Captains, Board, Founders & Partners"
         file: "data/content.json"
         fields:
+          - label: "Ticker Banner Text"
+            name: "ticker"
+            widget: "string"
+            hint: "The scrolling announcement bar at the very top of the site"
+
+          - label: "Weekly Runs"
+            name: "weeklyRuns"
+            widget: "list"
+            summary: "{{fields.day}} {{fields.time}} — {{fields.name}}"
+            fields:
+              - { label: "Day", name: "day", widget: "select", options: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"] }
+              - { label: "Time (24-hour, e.g. 18:00 for 6 PM)", name: "time", widget: "string" }
+              - { label: "Run Name", name: "name", widget: "string" }
+              - { label: "Details", name: "meta", widget: "string" }
+              - { label: "Distance", name: "distance", widget: "string" }
+
+          - label: "Races & Events"
+            name: "events"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.name}}"
+            fields:
+              - { label: "Date", name: "date", widget: "date", date_format: "YYYY-MM-DD" }
+              - { label: "Event Name", name: "name", widget: "string" }
+              - { label: "Details", name: "meta", widget: "string" }
+              - { label: "Distance", name: "distance", widget: "string" }
+
           - label: "Club Roster"
             name: "roster"
             widget: "list"
