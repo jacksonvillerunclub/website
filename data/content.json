@@ -1,36 +1,208 @@
 {
   "roster": [
-    { "name": "Maya Odom", "bib": "014", "paceGroup": "Sub-7", "weeklyMiles": "42", "joined": "2020", "role": "Captain" },
-    { "name": "Devon Ashby", "bib": "027", "paceGroup": "7:00–8:00", "weeklyMiles": "35", "joined": "2021", "role": "" },
-    { "name": "Priya Chandran", "bib": "031", "paceGroup": "8:00–9:00", "weeklyMiles": "28", "joined": "2022", "role": "Captain" },
-    { "name": "Sam Ferreira", "bib": "045", "paceGroup": "9:00–10:00", "weeklyMiles": "22", "joined": "2023", "role": "" },
-    { "name": "Leah Kowalski", "bib": "052", "paceGroup": "Sub-7", "weeklyMiles": "50", "joined": "2019", "role": "Board" },
-    { "name": "Isaiah Grant", "bib": "068", "paceGroup": "10:00–11:00", "weeklyMiles": "15", "joined": "2024", "role": "" },
-    { "name": "Renata Vieira", "bib": "073", "paceGroup": "Run-Walk", "weeklyMiles": "10", "joined": "2024", "role": "" },
-    { "name": "Tom Baxley", "bib": "081", "paceGroup": "7:00–8:00", "weeklyMiles": "33", "joined": "2021", "role": "" },
-    { "name": "Grace Umeh", "bib": "094", "paceGroup": "8:00–9:00", "weeklyMiles": "26", "joined": "2022", "role": "Captain" },
-    { "name": "Diego Salcedo", "bib": "102", "paceGroup": "9:00–10:00", "weeklyMiles": "20", "joined": "2023", "role": "" }
+    {
+      "name": "Maya Odom",
+      "bib": "014",
+      "paceGroup": "Sub-7",
+      "weeklyMiles": "42",
+      "joined": "2020",
+      "role": "Captain"
+    },
+    {
+      "name": "Devon Ashby",
+      "bib": "027",
+      "paceGroup": "7:00–8:00",
+      "weeklyMiles": "35",
+      "joined": "2021",
+      "role": ""
+    },
+    {
+      "name": "Priya Chandran",
+      "bib": "031",
+      "paceGroup": "8:00–9:00",
+      "weeklyMiles": "28",
+      "joined": "2022",
+      "role": "Captain"
+    },
+    {
+      "name": "Sam Ferreira",
+      "bib": "045",
+      "paceGroup": "9:00–10:00",
+      "weeklyMiles": "22",
+      "joined": "2023",
+      "role": ""
+    },
+    {
+      "name": "Leah Kowalski",
+      "bib": "052",
+      "paceGroup": "Sub-7",
+      "weeklyMiles": "50",
+      "joined": "2019",
+      "role": "Board"
+    },
+    {
+      "name": "Isaiah Grant",
+      "bib": "068",
+      "paceGroup": "10:00–11:00",
+      "weeklyMiles": "15",
+      "joined": "2024",
+      "role": ""
+    },
+    {
+      "name": "Renata Vieira",
+      "bib": "073",
+      "paceGroup": "Run-Walk",
+      "weeklyMiles": "10",
+      "joined": "2024",
+      "role": ""
+    },
+    {
+      "name": "Tom Baxley",
+      "bib": "081",
+      "paceGroup": "7:00–8:00",
+      "weeklyMiles": "33",
+      "joined": "2021",
+      "role": ""
+    },
+    {
+      "name": "Grace Umeh",
+      "bib": "094",
+      "paceGroup": "8:00–9:00",
+      "weeklyMiles": "26",
+      "joined": "2022",
+      "role": "Captain"
+    },
+    {
+      "name": "Diego Salcedo",
+      "bib": "102",
+      "paceGroup": "9:00–10:00",
+      "weeklyMiles": "20",
+      "joined": "2023",
+      "role": ""
+    }
   ],
   "captains": [
-    { "name": "Maya Odom", "initials": "MO", "bib": "014", "title": "Tuesday Speed Captain", "blurb": "Leads the sub-7 interval group. Former D1 track, now coaches for fun." },
-    { "name": "Priya Chandran", "initials": "PC", "bib": "031", "title": "Thursday Long-Run Captain", "blurb": "Plans the Sunday long-run routes. Ran her first marathon with the club in 2022." },
-    { "name": "Grace Umeh", "initials": "GU", "bib": "094", "title": "Saturday Social Run Captain", "blurb": "Keeps the beginner-friendly Saturday run low-pressure and coffee-focused." },
-    { "name": "Jordan Whitfield", "initials": "JW", "bib": "059", "title": "Run-Walk Captain", "blurb": "Runs the Couch-to-5K track for new members every spring and fall." }
+    {
+      "name": "Maya Odom",
+      "initials": "MO",
+      "bib": "014",
+      "title": "Tuesday Speed Captain",
+      "blurb": "Leads the sub-7 interval group. Former D1 track, now coaches for fun."
+    },
+    {
+      "name": "Priya Chandran",
+      "initials": "PC",
+      "bib": "031",
+      "title": "Thursday Long-Run Captain",
+      "blurb": "Plans the Sunday long-run routes. Ran her first marathon with the club in 2022."
+    },
+    {
+      "name": "Grace Umeh",
+      "initials": "GU",
+      "bib": "094",
+      "title": "Saturday Social Run Captain",
+      "blurb": "Keeps the beginner-friendly Saturday run low-pressure and coffee-focused."
+    },
+    {
+      "name": "Jordan Whitfield",
+      "initials": "JW",
+      "bib": "059",
+      "title": "Run-Walk Captain",
+      "blurb": "Runs the Couch-to-5K track for new members every spring and fall."
+    }
   ],
   "founders": [
-    { "name": "Jaylen Fowler ", "initials": "JF", "blurb": "N/A" },
-    { "name": "Jerome Jordan III", "initials": "JJ", "blurb": "N/A" },
-    { "name": "Rique Bentley", "initials": "RB", "blurb": "N/A" }
+    {
+      "name": "Jaylen Fowler ",
+      "initials": "JF",
+      "blurb": "N/A"
+    },
+    {
+      "name": "Jerome Jordan III",
+      "initials": "JJ",
+      "blurb": "N/A"
+    },
+    {
+      "name": "Rique Bentley",
+      "initials": "RB",
+      "blurb": "N/A"
+    }
   ],
   "board": [
-    { "name": "Amy Merrills", "initials": "AM", "role": "N/A", "blurb": "N/A" },
-    { "name": "Emily Perry", "initials": "EP", "role": "N/A", "blurb": "N/A" },
-    { "name": "Chrislande Baptiste", "initials": "CB", "role": "N/A", "blurb": "N/A" },
-    { "name": "Christin Johnson", "initials": "CJ", "role": "N/A", "blurb": "N/A" }
+    {
+      "name": "Amy Merrills",
+      "initials": "AM",
+      "role": "N/A",
+      "blurb": "N/A"
+    },
+    {
+      "name": "Emily Perry",
+      "initials": "EP",
+      "role": "N/A",
+      "blurb": "N/A"
+    },
+    {
+      "name": "Chrislande Baptiste",
+      "initials": "CB",
+      "role": "N/A",
+      "blurb": "N/A"
+    },
+    {
+      "name": "Christin Johnson",
+      "initials": "CJ",
+      "role": "N/A",
+      "blurb": "N/A"
+    }
   ],
   "partners": [
-    { "name": "Ankh Fitness", "tier": "Fitness Partner", "mark": "AF", "blurb": "N/A" },
-    { "name": "All 1 Media", "tier": "Media Marketing", "mark": "A1", "blurb": "N/A" },
-    { "name": "Jordan The Realtor ", "tier": "Real Estate", "mark": "JTR", "blurb": "N/A" }
+    {
+      "name": "Ankh Fitness",
+      "tier": "Fitness Partner",
+      "mark": "AF",
+      "blurb": "N/A"
+    },
+    {
+      "name": "All 1 Media",
+      "tier": "Media Marketing",
+      "mark": "A1",
+      "blurb": "N/A"
+    },
+    {
+      "name": "Jordan The Realtor ",
+      "tier": "Real Estate",
+      "mark": "JTR",
+      "blurb": "N/A"
+    }
+  ],
+  "ticker": "Saturday run moves to Friendship Fountain this week",
+  "weeklyRuns": [
+    {
+      "day": "Tuesday",
+      "time": "18:00",
+      "name": "Tuesday Evening Run — Friendship Fountain",
+      "meta": "All paces welcome · meet at Friendship Fountain, Downtown Jax",
+      "distance": "3–6 mi"
+    },
+    {
+      "day": "Saturday",
+      "time": "07:00",
+      "name": "Saturday Morning Run — Friendship Fountain",
+      "meta": "Beginner friendly · meet at Friendship Fountain, Downtown Jax",
+      "distance": "4–10 mi"
+    }
+  ],
+  "events": [
+    {
+      "date": "2026-08-08",
+      "name": "Summer Speed Series — Week 1",
+      "meta": "Club-hosted 5K time trial · Riverfront Track",
+      "distance": "5K"
+    },
+    {
+      "date": "2026-09-21",
+      "name": "Foothill Half Marathon — Club Meetup",
+      "meta": "Group registration + shakeout run the day before",
+      "distance": "13.1 mi"
+    }
   ]
 }
